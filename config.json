@@ -1,0 +1,15 @@
+{
+    "logEncoding": "utf-8",
+    "eventlogFile": "./event.log",
+    "monitorlogFile": "./monitor.log",
+    "monitorConifg": null,
+    "logLevel": "logging.DEBUG",
+    "lowThres": 4,
+    "highThres": 6000,
+    "monitorDevice": [0],
+    "autoExit":true,
+    "notify-sender":"chxxxxxxx@.qq.com",
+    "pwd":"xxxxxxxxxx",
+    "recevier":"24xxxxxxxx@qq.com"
+
+}
