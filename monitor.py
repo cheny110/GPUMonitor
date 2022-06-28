@@ -13,12 +13,12 @@ class GpuMonitor():
         self.monitorInterval=0
         self.spareEvent=spareEvent
         self.occupyEvent=occupyEvent
-        self.LOWTHRES=config["lowThres"]
-        self.HIGHTHRES=config["highThres"]
+        self.LOWTHRES=int(config["lowThres"])
+        self.HIGHTHRES=int(config["highThres"])
         self.spareEventArg=spareEventArg
         self.occupyEventArg=occupyEventArg
         self.monitorDevice= monitorDevice if monitorDevice is not None  else config["monitorDevice"]
-        self.notifyReceiver=notifyReceiver if notifyReceiver is not None else config["recevier"]
+        self.notifyReceiver=notifyReceiver if notifyReceiver is not None else config["receiver"]
         nvmlInit()
         self.deviceCount=nvmlDeviceGetCount()
         for i in range(self.deviceCount):

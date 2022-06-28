@@ -1,13 +1,10 @@
-from ast import arg
-from email.policy import default
-from tkinter import N
-from tkinter.tix import Tree
+
 from monitor import GpuMonitor
 import sys
 from events import *
-
-
-__VERSION="1.1.0"
+from config import alterConfig,config
+from argparse import ArgumentParser
+__VERSION="1.2.0"
 
 __help='''
 gpu-monitor--help monitors GPU memory and execute events when GPU memory satisfys the setting demand.
@@ -28,18 +25,27 @@ gpu-monitor--help monitors GPU memory and execute events when GPU memory satisfy
 
 --notify-receiver: follow receiver's email link,  if not provided, config option will be used.
 
+--alter-config :(v1.2.0) since version 1.2.0, config in file will be stored encryted. users should modify configuration file with this command.\n
+                 gpu-monitor --alter-config [key,value]
+                 usage example : gpu-monitor --alter-config [lowThres,500] the lowThres will be set to 500 in config file.
+
 @author:Cheny chenyprivate@vip.qq.com
 @web: https://chenycherry.top 
 @License: GPL v3  This is an open source software. No one should make profits from this. If you find actions violate the license, please contact "chenyprivate@vip.qq.com" 
 '''
 
 __update_infor='''
-                 from version : {1.0.0}
-                 to version :{1.1.0}
+                 from version : {1.1.0}
+                 to version :{1.2.0}
                  update: 
                     1.fix adding --monitor-device param from system args.
                     2. add notification by email function.
+                    3.replace config.json with config.conf,save config file with encrypted data.
+                    4. fix shell run in backgroud issue.
                             '''
+
+
+
 
 
 def main(): 
@@ -105,6 +111,16 @@ def main():
                     notifyReceiver=args[i+1]
             except Exception as e:
                 print("No email address for receiver avaliable,default receiver will be used in config file.")
+        elif args[i]=="--alter-config":
+            try:
+                newConfig=args[i+1].replace('[','').replace(']','').split(',')
+                alterConfig(newConfig[0],newConfig[1])
+            except Exception as e:
+                print("no new configuration specified or wrong configuration item!\n",e)
+                print("supported configuration items include:",config.keys())
+            sys.exit(0)
+                
+
 
         
 

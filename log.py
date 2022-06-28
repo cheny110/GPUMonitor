@@ -4,6 +4,10 @@ from config import config
 
 logLevel=logging.DEBUG
 
+
+#default configuration
+
+
 logging.basicConfig(
                     datefmt=f"%Y-%m-%d:%H:%M:%S",
                     format="%(asctime)s %(filename)s %(levelname)s %(message)s",
